@@ -93,22 +93,6 @@
         data: []
       }
     },
-    watch: {
-      activities (val, old) {
-        console.log('watch');
-        this.handleDatas()
-      },
-      theses (val, old) {
-        console.log('watch');
-        this.handleDatas()
-      },
-      coursewares (val, old) {
-        this.handleDatas()
-      },
-      experiences (val, old) {
-        this.handleDatas()
-      }
-    },
     mounted() {
       this.handleDatas()
     },
@@ -148,6 +132,9 @@
         data.forEach((item , index) => {
           if ((index+1)%this.pageSize !== 0) {
             arr.push(item)
+            if ((index+1) === data.length) {
+              new_data.push(arr)
+            }
           }else {
             index !== 0 ? arr.push(item) : null
             arr.length ? new_data.push(arr) : null
@@ -155,7 +142,7 @@
           }
         })
         this.allData = new_data
-        this.data = new_data[this.currentPage]
+        this.data = new_data[this.currentPage - 1]
       }
     }
   }
