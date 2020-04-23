@@ -105,10 +105,10 @@
       return {
         activeName: 'first',
         ruleForm:{
-          name:'123',
-          telephone: '13333333333',
-          email:'1@qq.com',
-          advice:'123',
+          name:'',
+          telephone: '',
+          email:'',
+          advice:'',
           title:'',
           img:'',
           content:''

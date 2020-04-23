@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app">
       <EducationItem title="家长频道" title_desc="Parents View"
                      :experiences="parentsView" @goExperienceDetail="goExperienceDetail"></EducationItem>
 
@@ -37,5 +37,7 @@
 </script>
 
 <style scoped>
-
+  #app{
+    height: 756px;
+  }
 </style>

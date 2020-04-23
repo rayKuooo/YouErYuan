@@ -143,6 +143,9 @@
       handleDatas (data) {
         if (!data) {
           data = this.activities || this.theses || this.coursewares || this.experiences
+          if (!data){
+            return
+          }
         }
         // let data = this.activities || this.theses || this.coursewares || this.experiences
         // console.log(data);
@@ -185,6 +188,7 @@
     flex: 1;
     flex-wrap: wrap;
     justify-content: space-around;
+    min-height: 800px;
     .projects-item{
       width: 410px;
       padding: 0 10px 55px;
