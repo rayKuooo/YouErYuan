@@ -11,6 +11,9 @@ const getTheses = () => ajax(basePath+'/getTheses', {}, 'GET')
 const getCourseWare = () => ajax(basePath+'/getCourseWare', {}, 'GET')
 const getParentsView = () => ajax(basePath+'/getParentsView', {}, 'GET')
 const getWonderfulVideo = () => ajax(basePath+'/getWonderfulVideo', {}, 'GET')
+const getWeeklyMenu = () => ajax(basePath+'/getWeeklyMenu', {}, 'GET')
+const getHealthCenter = () => ajax(basePath+'/getHealthCenter', {}, 'GET')
+const getScientificDiet = () => ajax(basePath+'/getScientificDiet', {}, 'GET')
 
 
 
@@ -20,5 +23,8 @@ export default {
   getTheses,
   getCourseWare,
   getParentsView,
-  getWonderfulVideo
+  getWonderfulVideo,
+  getWeeklyMenu,
+  getHealthCenter,
+  getScientificDiet
 }

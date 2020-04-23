@@ -14,7 +14,7 @@
     },
     data() {
       return {
-        wonderfulVideo: []
+        wonderfulVideo: this.$route.params.wonderfulVideo
       }
     },
     mounted() {

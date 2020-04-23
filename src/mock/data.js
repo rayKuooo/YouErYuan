@@ -299,11 +299,198 @@ const wonderfulVideo = [
     author: '郭睿'
   },
 ]
+const weeklyMenu = [
+  {
+    data:'星期一',
+    data_eg:'Monday',
+    guideBd:[
+      {
+        guideTitle:'早餐',
+        guideContent: ['老武汉热干面', '牛奶']
+      },
+      {
+        guideTitle:'早点',
+        guideContent: ['饼干']
+      },
+      {
+        guideTitle:'中餐',
+        guideContent: ['蚝油生菜', '黑芝麻米饭','海鲜蒸蛋','西红柿紫菜汤']
+      },
+      {
+        guideTitle:'午点',
+        guideContent: ['香蕉']
+      },
+      {
+        guideTitle:'晚餐',
+        guideContent: ['清炒瓠子','酱爆肝香肉','银芽榨菜汤']
+      }
+    ]
+  },
+  {
+    data:'星期二',
+    data_eg:'Tuesday',
+    guideBd:[
+      {
+        guideTitle:'早餐',
+        guideContent: ['葱香鸡蛋饼', '牛奶']
+      },
+      {
+        guideTitle:'早点',
+        guideContent: ['沙琪玛']
+      },
+      {
+        guideTitle:'中餐',
+        guideContent: ['番茄炖牛腩', '燕麦饭','平菇青菜鸡蛋汤','双色花菜']
+      },
+      {
+        guideTitle:'午点',
+        guideContent: ['苹果']
+      },
+      {
+        guideTitle:'晚餐',
+        guideContent: ['冬瓜虾皮汤','上汤苋菜','土豆烧鸭腿']
+      }
+    ]
+  },
+  {
+    data:'星期三',
+    data_eg:'Wednesday',
+    guideBd:[
+      {
+        guideTitle:'早餐',
+        guideContent: ['三鲜混沌', '鹌鹑蛋']
+      },
+      {
+        guideTitle:'早点',
+        guideContent: ['牛奶']
+      },
+      {
+        guideTitle:'中餐',
+        guideContent: ['糖醋剥皮鱼', '荞麦饭','脆炒土豆丝','西红柿青菜汤']
+      },
+      {
+        guideTitle:'午点',
+        guideContent: ['香瓜']
+      },
+      {
+        guideTitle:'晚餐',
+        guideContent: ['酱肉包','绿豆百合粥']
+      }
+    ]
+  },
+  {
+    data:'星期四',
+    data_eg:'Thursday',
+    guideBd:[
+      {
+        guideTitle:'早餐',
+        guideContent: ['果脯发糕', '红豆薏米粥']
+      },
+      {
+        guideTitle:'早点',
+        guideContent: ['牛奶']
+      },
+      {
+        guideTitle:'中餐',
+        guideContent: ['黄焖元子', '卤海带丝','小米饭','双菇汤']
+      },
+      {
+        guideTitle:'午点',
+        guideContent: ['西瓜']
+      },
+      {
+        guideTitle:'晚餐',
+        guideContent: ['红枣山药土鸡汤','三鲜炒粉']
+      }
+    ]
+  },
+  {
+    data:'星期五',
+    data_eg:'Friday',
+    guideBd:[
+      {
+        guideTitle:'早餐',
+        guideContent: ['葱香鸡蛋饼', '牛奶']
+      },
+      {
+        guideTitle:'早点',
+        guideContent: ['沙琪玛']
+      },
+      {
+        guideTitle:'中餐',
+        guideContent: ['番茄炖牛腩', '燕麦饭','平菇青菜鸡蛋汤','双色花菜']
+      },
+      {
+        guideTitle:'午点',
+        guideContent: ['苹果']
+      },
+      {
+        guideTitle:'晚餐',
+        guideContent: ['冬瓜虾皮汤','上汤苋菜','土豆烧鸭腿']
+      }
+    ]
+  },
+]
+const HealthCenter = [
+  {
+    img:'https://images.unsplash.com/photo-1573256081876-ca883b40ed2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    date:'2018/11/08',
+    title:'冬季幼儿饮食',
+    desc:'冬季幼儿饮食'
+  },
+  {
+    img:'https://images.unsplash.com/photo-1473348164936-13be821e561c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    date:'2018/04/15',
+    title:'平衡膳食原则',
+    desc:'平衡膳食原则'
+  },
+  {
+    img:'https://images.unsplash.com/photo-1580795478844-5ed694336c90?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    date:'2018/03/25',
+    title:'预防食源性疾病的十项建议',
+    desc:'预防食源性疾病的十项建议'
+  },
+  {
+    img:'https://images.unsplash.com/photo-1566828791229-3804b533f840?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    date:'2018/03/05',
+    title:'怎样鉴别奶类食品',
+    desc:'怎样鉴别奶类食品'
+  }
+]
+const ScientificDiet = [
+  {
+    img:'https://images.unsplash.com/photo-1550461716-dbf266b2a8a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    date:'2018/06/04',
+    title:'动手做一做："蜜烤香蕉"',
+    desc:'原料：香蕉2根、奶油2大匙、糖1大匙、兰姆酒1大匙、柠檬汁2小匙、巧克力酱少许、烤杏仁片少许。'
+  },
+  {
+    img:'https://images.unsplash.com/photo-1507491518447-ac20c6c50dc9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    date:'2018/04/15',
+    title:'动手做一做：“滑子菇烩海鲜”',
+    desc:'原料：滑子菇300克，海螺肉100克，扇贝2个，虾仁100克盐、料酒、小葱白、水淀粉、食用碱面各5克，鸡精8...'
+  },
+  {
+    img:'https://images.unsplash.com/photo-1562453020-48ee5c25348a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    date:'2018/03/25',
+    title:'动手做一做：“开口菠萝包”',
+    desc:'原料：面粉400克，面肥200克，去皮菠萝300克，白糖40克，炼乳20克，食用碱面8克用温水溶解。'
+  },
+  {
+    img:'https://images.unsplash.com/photo-1551040136-aee85a5cb5a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
+    date:'2018/03/05',
+    title:'动手做一做：“豌豆荚烧里脊条”',
+    desc:'原料：豌豆荚200克，猪里脊肉200克。'
+  }
+]
 
 export default {
   activities,
   theses,
   courseWare,
   parentsView,
-  wonderfulVideo
+  wonderfulVideo,
+  weeklyMenu,
+  HealthCenter,
+  ScientificDiet
 }

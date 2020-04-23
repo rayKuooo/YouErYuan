@@ -15,7 +15,7 @@
     },
     data(){
       return {
-        theses: []
+        theses: this.$route.params.theses
       }
     },
     mounted() {

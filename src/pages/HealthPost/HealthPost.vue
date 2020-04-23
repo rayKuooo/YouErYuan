@@ -28,18 +28,18 @@
         <div class="health-nav">
           <ul>
             <li>
-              <router-link to="/healthPost/scientificDiet" class="health-route"
+              <router-link :to="{name:'scientificDiet', params:{ScientificDiet}}" class="health-route"
               :class="{active: $route.fullPath.match('/scientificDiet')}">
                 科学膳食</router-link>
             </li>
             <li>
-              <router-link to="/healthPost/healthCenter" class="health-route"
+              <router-link :to="{name:'HealthCenter', params:{HealthCenter}}" class="health-route"
                            :class="{active: $route.fullPath.match('/healthCenter')}">
                 保健中心</router-link>
             </li>
           </ul>
         </div>
-        <router-view></router-view>
+          <router-view></router-view>
       </div>
     </div>
 </template>
@@ -54,149 +54,33 @@
     },
     data () {
       return {
-        weeklyMenu: [
-          {
-            data:'星期一',
-            data_eg:'Monday',
-            guideBd:[
-              {
-                guideTitle:'早餐',
-                guideContent: ['老武汉热干面', '牛奶']
-              },
-              {
-                guideTitle:'早点',
-                guideContent: ['饼干']
-              },
-              {
-                guideTitle:'中餐',
-                guideContent: ['蚝油生菜', '黑芝麻米饭','海鲜蒸蛋','西红柿紫菜汤']
-              },
-              {
-                guideTitle:'午点',
-                guideContent: ['香蕉']
-              },
-              {
-                guideTitle:'晚餐',
-                guideContent: ['清炒瓠子','酱爆肝香肉','银芽榨菜汤']
-              }
-            ]
-          },
-          {
-            data:'星期二',
-            data_eg:'Tuesday',
-            guideBd:[
-              {
-                guideTitle:'早餐',
-                guideContent: ['葱香鸡蛋饼', '牛奶']
-              },
-              {
-                guideTitle:'早点',
-                guideContent: ['沙琪玛']
-              },
-              {
-                guideTitle:'中餐',
-                guideContent: ['番茄炖牛腩', '燕麦饭','平菇青菜鸡蛋汤','双色花菜']
-              },
-              {
-                guideTitle:'午点',
-                guideContent: ['苹果']
-              },
-              {
-                guideTitle:'晚餐',
-                guideContent: ['冬瓜虾皮汤','上汤苋菜','土豆烧鸭腿']
-              }
-            ]
-          },
-          {
-            data:'星期三',
-            data_eg:'Wednesday',
-            guideBd:[
-              {
-                guideTitle:'早餐',
-                guideContent: ['三鲜混沌', '鹌鹑蛋']
-              },
-              {
-                guideTitle:'早点',
-                guideContent: ['牛奶']
-              },
-              {
-                guideTitle:'中餐',
-                guideContent: ['糖醋剥皮鱼', '荞麦饭','脆炒土豆丝','西红柿青菜汤']
-              },
-              {
-                guideTitle:'午点',
-                guideContent: ['香瓜']
-              },
-              {
-                guideTitle:'晚餐',
-                guideContent: ['酱肉包','绿豆百合粥']
-              }
-            ]
-          },
-          {
-            data:'星期四',
-            data_eg:'Thursday',
-            guideBd:[
-              {
-                guideTitle:'早餐',
-                guideContent: ['果脯发糕', '红豆薏米粥']
-              },
-              {
-                guideTitle:'早点',
-                guideContent: ['牛奶']
-              },
-              {
-                guideTitle:'中餐',
-                guideContent: ['黄焖元子', '卤海带丝','小米饭','双菇汤']
-              },
-              {
-                guideTitle:'午点',
-                guideContent: ['西瓜']
-              },
-              {
-                guideTitle:'晚餐',
-                guideContent: ['红枣山药土鸡汤','三鲜炒粉']
-              }
-            ]
-          },
-          {
-            data:'星期五',
-            data_eg:'Friday',
-            guideBd:[
-              {
-                guideTitle:'早餐',
-                guideContent: ['葱香鸡蛋饼', '牛奶']
-              },
-              {
-                guideTitle:'早点',
-                guideContent: ['沙琪玛']
-              },
-              {
-                guideTitle:'中餐',
-                guideContent: ['番茄炖牛腩', '燕麦饭','平菇青菜鸡蛋汤','双色花菜']
-              },
-              {
-                guideTitle:'午点',
-                guideContent: ['苹果']
-              },
-              {
-                guideTitle:'晚餐',
-                guideContent: ['冬瓜虾皮汤','上汤苋菜','土豆烧鸭腿']
-              }
-            ]
-          },
-        ]
+        weeklyMenu: [],
+        HealthCenter:[],
+        ScientificDiet:[]
       }
     },
-    mounted() {
-      this._initScroll()
+    async mounted() {
+      await this.initData()
+      this.$nextTick(() => {
+        this._initScroll()
+      })
     },
     methods: {
       //初始化滚动
       _initScroll() {
-        new BScroll('.weekly-menu', {
+        let BS = new BScroll('.weekly-menu', {
           scrollX: true
         })
+      },
+      async initData() {
+        const res = await this.$api.getWeeklyMenu()
+        this.weeklyMenu = res.data
+
+        const res2 = await this.$api.getHealthCenter()
+        this.HealthCenter = res2.data
+
+        const res3 = await this.$api.getScientificDiet()
+        this.ScientificDiet = res3.data
       }
     }
   }
@@ -205,7 +89,7 @@
 <style lang="scss">
   .weekly-menu{
     position: relative;
-    width: 1400px;
+    width: 100%;
     height: 600px;
     background: url("https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
     .guide-box{

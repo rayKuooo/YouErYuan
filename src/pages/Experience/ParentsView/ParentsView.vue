@@ -15,7 +15,7 @@
     },
     data() {
       return {
-        parentsView:[]
+        parentsView: this.$route.params.parentsView
       }
     },
     mounted() {

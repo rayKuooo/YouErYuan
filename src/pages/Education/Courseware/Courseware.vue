@@ -11,7 +11,7 @@
   export default {
     data() {
       return {
-        coursewares: []
+        coursewares: this.$route.params.coursewares
       }
     },
     mounted() {

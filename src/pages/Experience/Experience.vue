@@ -2,9 +2,9 @@
   <div>
     <BgTitleBar number="ONE" title="家园共育"></BgTitleBar>
     <div class="check-card">
-      <router-link to="/experience/wonderfulVideo" class="title"
+      <router-link :to="{name:'WonderfulVideo', params:{wonderfulVideo}}" class="title"
                    :class="{active : this.$route.fullPath.match('wonderfulVideo')}">育儿心得</router-link>
-      <router-link to="/experience/parentsView" class="title"
+      <router-link :to="{name:'ParentsView', params:{parentsView}}" class="title"
                    :class="{active : this.$route.fullPath.match('parentsView')}">家长频道</router-link>
     </div>
     <router-view></router-view>
@@ -17,6 +17,24 @@
     name: "Experience",
     components: {
       BgTitleBar
+    },
+    data() {
+      return {
+        parentsView: [],
+        wonderfulVideo: []
+      }
+    },
+    mounted() {
+      this.initData()
+    },
+    methods: {
+      async initData() {
+        const res = await this.$api.getParentsView()
+        this.parentsView = res.data
+
+        const res2 = await this.$api.getWonderfulVideo()
+        this.wonderfulVideo = res2.data
+      }
     }
   }
 </script>

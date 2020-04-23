@@ -13,7 +13,7 @@
   export default {
     data() {
       return {
-        activities : []
+        activities : this.$route.params.activities
         // isDetail: false
       }
     },
