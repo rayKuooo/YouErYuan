@@ -7,7 +7,7 @@
         <router-link class="nav-item" :class="{active: $route.fullPath==='/environment' }" to="/environment">环境介绍</router-link>
         <router-link class="nav-item" :class="{active: $route.fullPath.match('/education') }" to="/education">教育资源</router-link>
         <router-link class="nav-item" :class="{active: $route.fullPath.match('/healthPost') }" to="/healthPost">健康驿站</router-link>
-        <router-link class="nav-item" :class="{active: $route.fullPath==='/experience' }" to="/experience">家园共育</router-link>
+        <router-link class="nav-item" :class="{active: $route.fullPath.match('/experience') }" to="/experience">家园共育</router-link>
         <router-link class="nav-item" :class="{active: $route.fullPath==='/login' }" to="/login">联系我们</router-link>
       </ul>
       <div class="logo">

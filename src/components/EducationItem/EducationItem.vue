@@ -7,7 +7,7 @@
     <div class="projects">
       <div class="projects-item" v-if="$route.fullPath === '/education/activities'"
            v-for="(activitie, index) in data" :key="index">
-        <img :src="activitie.img">
+        <img :src="activitie.img" @click="goActivitiesDetail(activitie)">
         <h3 class="title" @click="goActivitiesDetail(activitie)">主题活动：{{activitie.activities_title}}</h3>
         <div v-if="activitie.activities_target.length">
           <span>活动目标：</span>
@@ -25,7 +25,7 @@
       </div>
       <div class="projects-item" v-if="$route.fullPath === '/education/thesis'"
       v-for="(thesis, index) in data" :key="index">
-        <img :src="thesis.img">
+        <img :src="thesis.img" @click="goThesisDetail(thesis)">
         <h3 @click="goThesisDetail(thesis)">{{thesis.theses_title}}</h3>
         <div>
           <span>[摘要]：</span>
@@ -37,7 +37,7 @@
       </div>
       <div class="projects-item" v-if="$route.fullPath === '/education/courseware'"
            v-for="(courseware, index) in coursewares">
-          <img :src="courseware.img">
+          <img :src="courseware.img" @click="goCoursewareDetail(courseware)">
           <h3 @click="goCoursewareDetail(courseware)">{{courseware.courseware_title}}</h3>
           <div>
             <span>[摘要]：</span>
@@ -49,13 +49,15 @@
       </div>
       <div class="projects-item" v-if="$route.fullPath.match('/experience')"
            v-for="(experience, index) in experiences">
-        <img :src="experience.img">
+        <img :src="experience.img" @click="goExperienceDetail(experience)">
         <h4 class="experience-title" @click="goExperienceDetail(experience)">{{experience.title}}</h4>
       </div>
       <div v-show="(activities&&!activities.length) || (theses&&!theses.length) || (coursewares&&!coursewares.length)"
            class="no-more">
         <h2>抱歉，暂无更多数据</h2>
       </div>
+    </div>
+    <div class="project-page">
       <el-pagination
         hide-on-single-page
         background
@@ -96,6 +98,20 @@
     mounted() {
       this.handleDatas()
     },
+    watch: {
+      activities(val) {
+        this.handleDatas(val)
+      },
+      theses(val) {
+        this.handleDatas(val)
+      },
+      coursewares(val) {
+        this.handleDatas(val)
+      },
+      experiences(val) {
+        this.handleDatas(val)
+      }
+    },
     computed:{
       total () {
         let activitiesLength = this.activities?this.activities.length:0
@@ -124,8 +140,11 @@
       },
 
       //  前端处理数据，让一页只有六个项目
-      handleDatas () {
-        let data = this.activities || this.theses || this.coursewares || this.experiences
+      handleDatas (data) {
+        if (!data) {
+          data = this.activities || this.theses || this.coursewares || this.experiences
+        }
+        // let data = this.activities || this.theses || this.coursewares || this.experiences
         // console.log(data);
         let arr = []
         let new_data = []
@@ -173,11 +192,13 @@
         display: inline-block;
         width: 400px;
         height: 200px;
+        cursor: pointer;
       }
       h3{
         font-size: 18px;
         padding: 15px 0;
         word-wrap: break-word;
+        cursor: pointer;
         &:hover{
           text-decoration: underline;
         }
@@ -197,6 +218,7 @@
         color: #5b5b5b;
         text-align: center;
         margin-top: 16px;
+        cursor: pointer;
       }
       p{
         color: #999999;
@@ -233,6 +255,10 @@
       }
     }
   }
-
+  .project-page{
+    width: 200px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+  }
 </style>
 

@@ -14,12 +14,19 @@
         coursewares: []
       }
     },
+    mounted() {
+      this.initData()
+    },
     components: {
       EducationItem
     },
     methods:{
       goCoursewareDetail(coursewareObj) {
         this.$router.push({name: 'CoursewareDetail', params:{id:coursewareObj.id, coursewareObj:coursewareObj}})
+      },
+      async initData() {
+        const res = await this.$api.getCourseWare()
+        this.coursewares = res.data
       }
     }
   }

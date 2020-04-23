@@ -75,7 +75,6 @@
 
 <script>
   import BgTitleBar from "../../components/BgTitleBar/BgTitleBar";
-  import {sendEmail} from '../../assets/js/api'
   export default {
     name: "Login",
     components: {
@@ -106,10 +105,10 @@
       return {
         activeName: 'first',
         ruleForm:{
-          name:'',
-          telephone: '',
-          email:'',
-          advice:'',
+          name:'123',
+          telephone: '13333333333',
+          email:'1@qq.com',
+          advice:'123',
           title:'',
           img:'',
           content:''
@@ -161,27 +160,20 @@
       },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
-          // let email = {
-          //   name : this.ruleForm.name,
-          //   telephone: this.ruleForm.telephone,
-          //   email: this.ruleForm.email,
-          //   advice: this.ruleForm.advice,
-          //   title: this.ruleForm.title,
-          //   img: this.ruleForm.img,
-          //   content: this.ruleForm.content
-          // }
           let email = this.ruleForm
-          this.$ajax('http://api.hervie.wang/sendEmail', {email}, 'POST')
+          // console.log(email);
+          this.$api.sendEmail(email).then(res => {
+            if (res.id === 1){
+              if (formName==='ruleForm1' && valid) {
+                alert('您的建议已经提交成功，我们会在认真查看后听取的!');
+              }else if (formName==='ruleForm2' && valid){
+                alert('您的心得投稿成功，我们会在7个工作日内给您答复!');
+              }
+            } else {
+              alert(res.message)
+            }
+          })
 
-          if (formName==='ruleForm1' && valid) {
-            alert('您的建议已经提交成功，我们会在认真查看后听取的!');
-          }else if (formName==='ruleForm2' && valid){
-            alert('您的心得投稿成功，我们会在7个工作日内给您答复!');
-          }
-          else {
-            console.log('error submit!!');
-            return false;
-          }
         });
       },
       resetForm(formName) {
