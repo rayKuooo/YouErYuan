@@ -12,4 +12,6 @@ Mock.mock(basePath+'/getWonderfulVideo',{status: 200, data: data.wonderfulVideo}
 Mock.mock(basePath+'/getWeeklyMenu',{status: 200, data: data.weeklyMenu})
 Mock.mock(basePath+'/getHealthCenter',{status: 200, data: data.HealthCenter})
 Mock.mock(basePath+'/getScientificDiet',{status: 200, data: data.ScientificDiet})
+Mock.mock(basePath+'/getImgList',{status: 200, data: data.imgList})
+Mock.mock(basePath+'/getTeachers',{status: 200, data: data.teachers})
 

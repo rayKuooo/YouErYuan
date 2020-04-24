@@ -2,38 +2,23 @@
   <div>
     <BgTitleBar number="ONE" title="家园共育"></BgTitleBar>
     <div class="check-card">
-      <router-link :to="{name:'WonderfulVideo', params:{wonderfulVideo}}" class="title"
+      <router-link :to="{name:'WonderfulVideo'}" class="title"
                    :class="{active : this.$route.fullPath.match('wonderfulVideo')}">育儿心得</router-link>
-      <router-link :to="{name:'ParentsView', params:{parentsView}}" class="title"
+      <router-link :to="{name:'ParentsView'}" class="title"
                    :class="{active : this.$route.fullPath.match('parentsView')}">家长频道</router-link>
     </div>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-  import BgTitleBar from "../../components/BgTitleBar/BgTitleBar";
   export default {
     name: "Experience",
-    components: {
-      BgTitleBar
-    },
     data() {
       return {
-        parentsView: [],
-        wonderfulVideo: []
-      }
-    },
-    mounted() {
-      this.initData()
-    },
-    methods: {
-      async initData() {
-        const res = await this.$api.getParentsView()
-        this.parentsView = res.data
 
-        const res2 = await this.$api.getWonderfulVideo()
-        this.wonderfulVideo = res2.data
       }
     }
   }

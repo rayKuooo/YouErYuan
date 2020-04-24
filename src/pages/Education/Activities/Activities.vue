@@ -1,25 +1,22 @@
 <template>
   <div>
+    <Loading v-if="!isFinished"></Loading>
     <EducationItem title="优秀主题活动" title_desc="Excellent Thematic Activities"
                    :activities="activities" @goActivitiesDetail="goActivitiesDetail"
-    v-if="!isDetail"></EducationItem>
+                   v-if="!isDetail"></EducationItem>
 
     <router-view v-else></router-view>
   </div>
 </template>
 
 <script>
-  import EducationItem from "../../../components/EducationItem/EducationItem";
   export default {
     data() {
       return {
-        activities : this.$route.params.activities
+        activities : [],
+        isFinished: false
         // isDetail: false
       }
-    },
-
-    components:{
-      EducationItem
     },
     mounted() {
       this.initData()
@@ -31,7 +28,10 @@
       },
       async initData() {
         let res = await this.$api.getActivities()
-        this.activities = res.data
+        if (res.status === 200) {
+          this.isFinished = true
+          this.activities = res.data
+        }
       }
     },
     computed: {

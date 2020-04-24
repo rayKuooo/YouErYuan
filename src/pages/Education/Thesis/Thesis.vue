@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loading v-if="!isFinished"></Loading>
     <EducationItem title="获奖论文" title_desc="Awardwinning paper" :theses="theses"
     @goThesisDetail="goThesisDetail"  v-if="idDetail"></EducationItem>
 
@@ -8,14 +9,11 @@
 </template>
 
 <script>
-  import EducationItem from "../../../components/EducationItem/EducationItem";
   export default {
-    components: {
-      EducationItem
-    },
     data(){
       return {
-        theses: this.$route.params.theses
+        theses: [],
+        isFinished: false
       }
     },
     mounted() {
@@ -26,8 +24,11 @@
         this.$router.push({name: 'ThesisDetail', params:{id:thesisObj.id, thesisObj:thesisObj}})
       },
       async initData() {
-        const res = await this.$api.getTheses()
-        this.theses = res.data
+        let res = await this.$api.getTheses()
+        if (res.status === 200) {
+          this.isFinished = true
+          this.theses = res.data
+        }
       }
     },
     computed: {

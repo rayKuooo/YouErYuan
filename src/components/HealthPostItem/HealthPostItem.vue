@@ -30,6 +30,7 @@
     width: 1200px;
     display: flex;
     flex-wrap: wrap;
+    min-height: 756px;
     .panel-item{
       width: 460px;
       margin: 0 75px 30px 0;

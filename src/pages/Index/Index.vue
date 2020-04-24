@@ -60,6 +60,7 @@
         </transition>
       </div>
       <div class="middle middle_three" >
+        <Loading v-if="!isFinished"></Loading>
         <BgTitleBar number="THREE" title="我们的教师朋友们"></BgTitleBar>
         <transition name="opa">
           <el-carousel indicator-position="outside" v-show="middleThreeShow">
@@ -78,53 +79,23 @@
 </template>
 
 <script>
-  import BgTitleBar from "../../components/BgTitleBar/BgTitleBar";
   export default {
     name: "Index",
-    components:{
-      BgTitleBar
-    },
     data (){
       return {
-        teachers:[
-          {
-            name:'Linda Carl',
-            avatar:'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-            title:'Suspendisse sagittis nibh sit amet nisi imperdiet',
-            content:'Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa,eu aliquet massa. Suspendisse lacinia rutrum tincidunt. Integer id erat porta, convallis tortor a, ullamcorper magna.'
-          },
-          {
-            name:'Michael Paul',
-            avatar:'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-            title:'Integer id erat porta convallis tortor',
-            content:'Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa,' +
-              'eu aliquet massa. Suspendisse lacinia rutrum tincidunt. Integer id erat porta, ' +
-              'convallis tortor a, ullamcorper magna.'
-          },
-          {
-            name:'Mark Henry',
-            avatar:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-            title:'Suspendisse sagittis nibh sit amet nisi imperdiet',
-            content:'Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa,eu aliquet massa. Suspendisse lacinia rutrum tincidunt. Integer id erat porta, convallis tortor a, ullamcorper magna.'
-          },
-          {
-            name:'Dirk Smith',
-            avatar:'https://images.unsplash.com/photo-1484611941511-3628849e90f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM2MTcxfQ&auto=format&fit=crop&w=500&q=60',
-            title:'Suspendisse sagittis nibh sit amet nisi imperdiet',
-            content:'Donec laoreet eu purus eu viverra. Vestibulum sed convallis massa,eu aliquet massa. Suspendisse lacinia rutrum tincidunt. Integer id erat porta, convallis tortor a, ullamcorper magna.'
-          }
-        ],
+        teachers: [],
         contentImgShow: false,
         middleTwoShow: false,
         middleThreeShow: false,
-        contentWord: false
+        contentWord: false,
+        isFinished: true
       }
     },
     mounted() {
       window.addEventListener('scroll', this.handleScroll)
     },
     methods:{
-      handleScroll() {  //监听滚轮滑动控制页面动画效果
+      async handleScroll() {  //监听滚轮滑动控制页面动画效果
         //滚动位置
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         //
@@ -136,8 +107,15 @@
         if(scrollTop>=1150){
           this.middleTwoShow = true
         }
-        if(scrollTop>=1600){
+        if(scrollTop>=1300){
           this.middleThreeShow = true
+          this.isFinished = false
+          const res = await this.$api.getTeachers()
+          if (res.status === 200) {
+            this.teachers = res.data
+            this.isFinished = true
+          }
+          removeEventListener('scroll', this.handleScroll)
         }
       }
     },

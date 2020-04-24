@@ -74,12 +74,8 @@
 </template>
 
 <script>
-  import BgTitleBar from "../../components/BgTitleBar/BgTitleBar";
   export default {
     name: "Login",
-    components: {
-      BgTitleBar
-    },
     mounted() {
       if (this.$route.params.email){
         this.ruleForm.email = this.$route.params.email

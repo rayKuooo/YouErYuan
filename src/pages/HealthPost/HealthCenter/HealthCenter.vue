@@ -1,18 +1,16 @@
 <template>
   <div>
+    <Loading v-if="!isFinished"></Loading>
     <HealthPostItem :panelArr="HealthCenter"></HealthPostItem>
   </div>
 </template>
 
 <script>
-  import HealthPostItem from "../../../components/HealthPostItem/HealthPostItem";
   export default {
-    components: {
-      HealthPostItem
-    },
     data() {
       return {
-        HealthCenter: this.$route.params.HealthCenter
+        HealthCenter: [],
+        isFinished: false
       }
     },
     created() {
@@ -22,6 +20,7 @@
       async initData() {
         const res = await this.$api.getHealthCenter()
         this.HealthCenter = res.data
+        this.isFinished = true
       }
     }
   }

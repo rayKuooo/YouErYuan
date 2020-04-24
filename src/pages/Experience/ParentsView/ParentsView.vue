@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+      <Loading v-if="!isFinished"></Loading>
       <EducationItem title="家长频道" title_desc="Parents View"
                      :experiences="parentsView" @goExperienceDetail="goExperienceDetail"></EducationItem>
 
@@ -7,30 +8,32 @@
 </template>
 
 <script>
-  import EducationItem from "../../../components/EducationItem/EducationItem";
   export default {
     name: "ParentsView",
-    components: {
-      EducationItem
-    },
     data() {
       return {
-        parentsView: this.$route.params.parentsView
+        parentsView: [],
+        isFinished: false
       }
     },
     mounted() {
       this.initData()
     },
-    methods:{
-      goExperienceDetail(experience){
-        this.$router.push({name:'ExperienceDetail',params:{
+    methods: {
+      goExperienceDetail(experience) {
+        this.$router.push({
+          name: 'ExperienceDetail', params: {
             title: experience.title,
             experience
-          }})
+          }
+        })
       },
       async initData() {
-        const res = await this.$api.getParentsView()
-        this.parentsView = res.data
+        let res = await this.$api.getParentsView()
+        if (res.status === 200) {
+          this.isFinished = true
+          this.parentsView = res.data
+        }
       }
     }
   }
@@ -38,6 +41,6 @@
 
 <style scoped>
   #app{
-    height: 756px;
+    min-height: 756px;
   }
 </style>

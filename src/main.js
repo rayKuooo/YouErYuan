@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import api from './assets/js/api'
+import './assets/js/components'
 import './mock/index'
 
 Vue.config.productionTip = false

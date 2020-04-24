@@ -1,5 +1,6 @@
 <template>
     <div id="HealthPost">
+      <Loading v-if="!isFinished"></Loading>
       <BgTitleBar number="ONE" title="每周菜谱"></BgTitleBar>
       <div class="weekly-menu">
         <ul class="guide-box">
@@ -28,35 +29,32 @@
         <div class="health-nav">
           <ul>
             <li>
-              <router-link :to="{name:'scientificDiet', params:{ScientificDiet}}" class="health-route"
+              <router-link :to="{name:'scientificDiet'}" class="health-route"
               :class="{active: $route.fullPath.match('/scientificDiet')}">
                 科学膳食</router-link>
             </li>
             <li>
-              <router-link :to="{name:'HealthCenter', params:{HealthCenter}}" class="health-route"
+              <router-link :to="{name:'HealthCenter'}" class="health-route"
                            :class="{active: $route.fullPath.match('/healthCenter')}">
                 保健中心</router-link>
             </li>
           </ul>
         </div>
+        <keep-alive>
           <router-view></router-view>
+        </keep-alive>
       </div>
     </div>
 </template>
 
 <script>
   import BScroll from '@better-scroll/core'
-  import BgTitleBar from "../../components/BgTitleBar/BgTitleBar";
   export default {
     name: "HealthPost",
-    components: {
-      BgTitleBar
-    },
     data () {
       return {
         weeklyMenu: [],
-        HealthCenter:[],
-        ScientificDiet:[]
+        isFinished: false
       }
     },
     async mounted() {
@@ -75,12 +73,7 @@
       async initData() {
         const res = await this.$api.getWeeklyMenu()
         this.weeklyMenu = res.data
-
-        const res2 = await this.$api.getHealthCenter()
-        this.HealthCenter = res2.data
-
-        const res3 = await this.$api.getScientificDiet()
-        this.ScientificDiet = res3.data
+        this.isFinished = true
       }
     }
   }
